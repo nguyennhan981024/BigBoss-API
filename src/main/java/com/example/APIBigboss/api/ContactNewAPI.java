@@ -16,5 +16,22 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/v1/contact-new")
 public class ContactNewAPI {
-  
+    @Autowired
+    private ContactNewRepository contactNewRepository;
+
+    @GetMapping
+    public ResponseEntity<List<ContactNew>> getAllContactNew(){
+        return ResponseEntity.ok(contactNewRepository.getAllContactNew());
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<?> createContactNew(@Valid @RequestBody ContactNew contactNew) {
+        ContactNew contactNewSaved = contactNewRepository.save(contactNew);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(contactNew.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(contactNewSaved);
+    }
 }
