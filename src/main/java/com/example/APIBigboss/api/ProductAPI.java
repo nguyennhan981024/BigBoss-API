@@ -18,7 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping(path = "api/v1/product")
 public class ProductAPI {
-    @Autowired
+ 
+       @Autowired
     private ProductRepository productRepository;
 
     @GetMapping
