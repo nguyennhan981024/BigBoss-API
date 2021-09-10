@@ -34,4 +34,5 @@ public class BannerAPI {
                 .toUri();
         return ResponseEntity.created(location).body(bannerSaved);
     }
+    
 }
