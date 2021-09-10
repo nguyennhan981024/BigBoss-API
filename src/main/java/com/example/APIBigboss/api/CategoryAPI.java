@@ -47,6 +47,18 @@ public class CategoryAPI {
                 .toUri();
         return ResponseEntity.created(location).body(categorySaved);
     }
+    
+       @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Category> deleteCategory(@PathVariable int id){
+        Optional<Category> optionalCategory= categoryRepository.findCategoryById(id);
+
+        if(!optionalCategory.isPresent()){
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        categoryRepository.delete(optionalCategory.get());
+        return ResponseEntity.noContent().build();
+    }
+    
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateCategory(@PathVariable int id,
                                             @Valid @RequestBody Category category){
@@ -60,14 +72,5 @@ public class CategoryAPI {
         return ResponseEntity.ok(optionalCategory.get());
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Category> deleteCategory(@PathVariable int id){
-        Optional<Category> optionalCategory= categoryRepository.findCategoryById(id);
-
-        if(!optionalCategory.isPresent()){
-            return ResponseEntity.unprocessableEntity().build();
-        }
-        categoryRepository.delete(optionalCategory.get());
-        return ResponseEntity.noContent().build();
-    }
+ 
 }
