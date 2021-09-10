@@ -34,4 +34,5 @@ public class ContactNewAPI {
                 .toUri();
         return ResponseEntity.created(location).body(contactNewSaved);
     }
+    
 }
