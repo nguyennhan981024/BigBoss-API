@@ -16,7 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/v1/store-system")
 public class StoreSystemAPI {
-    @Autowired
+  
+     @Autowired
     private StoreSystemRepository storeSystemRepository;
 
     @GetMapping
