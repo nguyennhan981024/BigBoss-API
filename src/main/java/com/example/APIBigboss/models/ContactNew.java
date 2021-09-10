@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 @Entity
 public class ContactNew {
-    @Id
+  
+      @Id
     // set up primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
