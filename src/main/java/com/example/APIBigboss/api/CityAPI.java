@@ -24,7 +24,8 @@ public class CityAPI {
         return ResponseEntity.ok(cityRepository.getAllCity());
     }
 
-    @PostMapping("/add")
+  
+      @PostMapping("/add")
     public ResponseEntity<?> createCity(@Valid @RequestBody City city) {
         City citySaved = cityRepository.save(city);
         URI location = ServletUriComponentsBuilder
